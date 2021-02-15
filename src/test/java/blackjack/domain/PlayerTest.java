@@ -110,8 +110,8 @@ class PlayerTest {
     @MethodSource("providerGetPlayerMatchProfitInfoParams")
     void getPlayerMatchProfitInfo(List<Integer> playerNumbers, List<Integer> dealerNumbers, Integer profit) {
         Player player = new Player(
-            "player",
             10,
+            "player",
             new CardBunch(
                 playerNumbers, Suit.HEARTS
             )
@@ -122,9 +122,11 @@ class PlayerTest {
             )
         );
 
+        player.playMatch(dealer);
+
         assertEquals(
             new PersonMatchProfitInfo("player", profit),
-            player.getPlayerMatchProfitInfo(dealer)
+            player.getMatchProfitInfo()
         );
     }
 

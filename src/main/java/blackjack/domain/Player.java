@@ -1,13 +1,27 @@
 package blackjack.domain;
 
-import blackjack.dto.PersonMatchProfitInfo;
-
 public class Player extends Person {
     private final int betMoney;
 
+    // TODO : Use builder pattern
     public Player(String name) {
         super(name);
         this.betMoney = 0;
+    }
+
+    public Player(int betMoney, String name) {
+        super(name);
+        this.betMoney = betMoney;
+    }
+
+    public Player(String name, int profit) {
+        super(name, profit);
+        this.betMoney = 0;
+    }
+
+    public Player(int betMoney, String name, int profit) {
+        super(name, profit);
+        this.betMoney = betMoney;
     }
 
     public Player(String name, CardBunch cardBunch) {
@@ -15,13 +29,18 @@ public class Player extends Person {
         this.betMoney = 0;
     }
 
-    public Player(String name, int betMoney) {
-        super(name);
+    public Player(int betMoney, String name, CardBunch cardBunch) {
+        super(name, cardBunch);
         this.betMoney = betMoney;
     }
 
-    public Player(String name, int betMoney, CardBunch cardBunch) {
-        super(name, cardBunch);
+    public Player(String name, int profit, CardBunch cardBunch) {
+        super(name, profit, cardBunch);
+        this.betMoney = 0;
+    }
+
+    public Player(int betMoney, String name, int profit, CardBunch cardBunch) {
+        super(name, profit, cardBunch);
         this.betMoney = betMoney;
     }
 
@@ -30,11 +49,11 @@ public class Player extends Person {
         return !cardBunch.isBlackJackScore() && !cardBunch.isBust();
     }
 
-    public PersonMatchProfitInfo getPlayerMatchProfitInfo(Dealer dealer) {
+    public void playMatch(Dealer dealer) {
         int playerProfit = getMatchProfit(dealer);
+        
+        this.addProfit(playerProfit);
         dealer.addProfit(-playerProfit);
-
-        return new PersonMatchProfitInfo(name, playerProfit);
     }
 
     private Integer getMatchProfit(Person dealer) {

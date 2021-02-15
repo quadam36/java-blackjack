@@ -61,9 +61,10 @@ public class PeopleController {
     }
 
     public void actionEndPhase(OutputView output) {
+        players.playMatches(dealer);
+
         output.printMatchProfitGuideMsg();
-        output.printPeopleMatchProfitInfo(
-            players.playMatch(dealer)
-        );
+        output.printPersonMatchProfitInfo(dealer.getMatchProfitInfo());
+        output.printPeopleMatchProfitInfo(players.getPlayersMatchProfitInfo());
     }
 }

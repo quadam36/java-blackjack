@@ -63,7 +63,7 @@ class DealerTest {
 
         assertEquals(
             new PersonMatchProfitInfo("딜러", 20),
-            dealer.getDealerProfitInfo()
+            dealer.getMatchProfitInfo()
         );
     }
 
@@ -72,7 +72,7 @@ class DealerTest {
     void getDealerProfitInfo() {
         assertEquals(
             new PersonMatchProfitInfo("딜러", 30),
-            new Dealer(30).getDealerProfitInfo()
+            new Dealer(30).getMatchProfitInfo()
         );
     }
 

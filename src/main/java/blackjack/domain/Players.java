@@ -28,7 +28,7 @@ public class Players {
             playerItems
                 .entrySet()
                 .stream()
-                .map(map -> new Player(map.getKey(), map.getValue()))
+                .map(map -> new Player(map.getValue(), map.getKey()))
                 .collect(Collectors.toList())
         );
     }
@@ -57,14 +57,8 @@ public class Players {
         activePlayerIdx++;
     }
 
-    public List<PersonMatchProfitInfo> playMatch(Dealer dealer) {
-        List<PersonMatchProfitInfo> peopleProfitInfo = players
-            .stream()
-            .map(player -> player.getPlayerMatchProfitInfo(dealer))
-            .collect(Collectors.toList());
-        peopleProfitInfo.add(0, dealer.getDealerProfitInfo());
-
-        return peopleProfitInfo;
+    public void playMatches(Dealer dealer) {
+        players.forEach(player -> player.playMatch(dealer));
     }
 
     public NameInfo getActivePlayerNameInfo() {
@@ -93,6 +87,13 @@ public class Players {
         return players
             .stream()
             .map(Person::getScoreInfo)
+            .collect(Collectors.toList());
+    }
+
+    public List<PersonMatchProfitInfo> getPlayersMatchProfitInfo() {
+        return players
+            .stream()
+            .map(Person::getMatchProfitInfo)
             .collect(Collectors.toList());
     }
 }

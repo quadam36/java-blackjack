@@ -18,7 +18,7 @@ public class OutputView {
 
     private static final String DEALER_DRAW_INFO_FMT = "%s는 %s이하라 한장의 카드를 더 받았습니다\n";
 
-    private static final String MATCH_PROFIT_GUIDE_MSG = "## 최종 승패";
+    private static final String MATCH_PROFIT_GUIDE_MSG = "## 최종 수익";
     private static final String MATCH_PROFIT_INFO_FMT = "%s: %d\n";
 
     public void printInitializeGameMsg(NameInfo dealerNameInfo, List<NameInfo> playersNameInfo, Integer cardCnt) {
@@ -83,7 +83,7 @@ public class OutputView {
         matchProfitsInfo.forEach(this::printPersonMatchProfitInfo);
     }
 
-    private void printPersonMatchProfitInfo(PersonMatchProfitInfo personMatchProfitInfo) {
+    public void printPersonMatchProfitInfo(PersonMatchProfitInfo personMatchProfitInfo) {
         System.out.format(
             MATCH_PROFIT_INFO_FMT,
             personMatchProfitInfo.getName(),
